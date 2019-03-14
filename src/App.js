@@ -1,28 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.css'; 
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+  constructor(props) {
+  super(props);
+  this.state = { skin: 'night' };
+  this.changeSkin = this.changeSkin.bind(this);  
   }
-}
+  changeSkin() {
+    const newState = this.state;
+    this.state.skin === 'night' ? newState.skin = 'day' : newState.skin = 'night';
+    this.setState(newState);
+   }
+  render() {
+  return (
+  <div className={this.state.skin}>
+  <header className="App-header">
+  <p onClick={this.changeSkin} style={{ fontSize: '50px', cursor: 'pointer' }}>Change Skin</p>
+  </header>
+  </div>
+  );
+  }
+ } 
 
 export default App;
